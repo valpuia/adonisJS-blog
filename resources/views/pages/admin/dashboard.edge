@@ -1,4 +1,8 @@
 @layout.auth()
+@slot('header')
+Dashboard
+@endslot
+
 Welcome {{ auth.user.fullName }}
 
 <form method="post" action="{{ route('logout') }}">

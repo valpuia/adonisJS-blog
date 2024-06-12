@@ -4,11 +4,7 @@ import type { HttpContext } from '@adonisjs/core/http'
 
 export default class LoginController {
 
-  async index({ view, auth, response }: HttpContext) {
-    if (await auth.check()) {
-      return response.redirect().toRoute('admin.dashboard')
-    }
-
+  async index({ view }: HttpContext) {
     return view.render('pages/auth/login');
   }
 
@@ -17,7 +13,7 @@ export default class LoginController {
 
     const user = await User.verifyCredentials(email, password)
 
-    await auth.use('web').login(user)
+    await auth.use('web').login(user, !!request.input('remember_me'))
 
     response.redirect().toRoute('admin.dashboard')
   }

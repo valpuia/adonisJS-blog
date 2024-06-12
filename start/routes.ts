@@ -16,9 +16,9 @@ const LogoutController = () => import('#controllers/auth/logout_controller')
 
 router.on('/').render('pages/welcome')
 
-router.get('login', [LoginController, 'index']).as('login')
-router.post('login', [LoginController, 'handle']).as('login.handle')
-router.post('logout', [LogoutController, 'handle']).as('logout')
+router.get('login', [LoginController, 'index']).as('login').use(middleware.guest())
+router.post('login', [LoginController, 'handle']).as('login.handle').use(middleware.guest())
+router.post('logout', [LogoutController, 'handle']).as('logout').use(middleware.auth())
 
 router.group(() => {
     router.get('dashboard', [DashboardController, 'index']).as('dashboard')
