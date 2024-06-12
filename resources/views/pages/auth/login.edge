@@ -1,0 +1,66 @@
+@layout.guest()
+
+<div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100 dark:bg-gray-900">
+    <div>
+        <a href="/">
+            @!logo()
+        </a>
+    </div>
+
+    <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white dark:bg-gray-800 shadow-md overflow-hidden sm:rounded-lg">
+
+        <form method="POST" action="{{ route('login.handle') }}">
+            {{ csrfField() }}
+
+            <div>
+                @label()
+                Email
+                @end
+
+                @!input({
+                type: 'email',
+                name: 'email',
+                required: true,
+                value: old('email'),
+                autofocus: true,
+                })
+
+                @error('E_INVALID_CREDENTIALS')
+                <p class="text-xs text-red-500 mt-1">{{ $message }}</p>
+                @end
+            </div>
+
+            <div class="mt-4">
+                @label()
+                Password
+                @end
+
+                @!input({
+                type: 'password',
+                name: 'password',
+                required: 'true',
+                })
+            </div>
+
+            <div class="block mt-4">
+                <label for="remember" class="inline-flex items-center">
+                    <input wire:model="form.remember" id="remember" type="checkbox"
+                        class="rounded dark:bg-gray-900 border-gray-300 dark:border-gray-700 text-indigo-600 shadow-sm focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:focus:ring-offset-gray-800"
+                        name="remember">
+                    <span class="ms-2 text-sm text-gray-600 dark:text-gray-400">Remember me</span>
+                </label>
+            </div>
+
+            <div class="flex justify-end items-center mt-4">
+                @button({
+                type: 'submit',
+                })
+                Login
+                @end
+            </div>
+        </form>
+
+    </div>
+</div>
+
+@end

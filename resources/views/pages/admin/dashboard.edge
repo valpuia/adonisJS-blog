@@ -1,0 +1,8 @@
+@layout.auth()
+Welcome {{ auth.user.fullName }}
+
+<form method="post" action="{{ route('logout') }}">
+    {{ csrfField() }}
+    <button type="submit" class="border shadow">Sign out</button>
+</form>
+@end
