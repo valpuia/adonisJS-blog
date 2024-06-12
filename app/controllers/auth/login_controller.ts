@@ -9,11 +9,11 @@ export default class LoginController {
   }
 
   async handle({ request, response, auth }: HttpContext) {
-    const { email, password } = await request.validateUsing(loginValidator)
+    const { email, password, rememberMe } = await request.validateUsing(loginValidator)
 
     const user = await User.verifyCredentials(email, password)
 
-    await auth.use('web').login(user, !!request.input('remember_me'))
+    await auth.use('web').login(user, rememberMe)
 
     response.redirect().toRoute('admin.dashboard')
   }
