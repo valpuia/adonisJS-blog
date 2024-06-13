@@ -22,6 +22,9 @@ export default class Blog extends BaseModel {
   @column()
   declare content: string
 
+  @column()
+  declare userId: number
+
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime
 
