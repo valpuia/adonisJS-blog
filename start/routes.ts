@@ -13,6 +13,7 @@ import { middleware } from './kernel.js'
 const DashboardController = () => import('#controllers/admin/dashboard_controller')
 const LoginController = () => import('#controllers/auth/login_controller')
 const LogoutController = () => import('#controllers/auth/logout_controller')
+const BlogsController = () => import('#controllers/admin/blogs_controller')
 
 router.on('/').render('pages/welcome')
 
@@ -22,6 +23,8 @@ router.post('logout', [LogoutController, 'handle']).as('logout').use(middleware.
 
 router.group(() => {
     router.get('dashboard', [DashboardController, 'index']).as('dashboard')
+
+    router.resource('blogs', BlogsController).except(['show'])
 })
     .prefix('admin')
     .as('admin')
