@@ -1,12 +1,17 @@
-@layout.auth()
+@layout.auth({ title: 'Dashboard' })
+
 @slot('header')
 Dashboard
 @endslot
 
-Welcome {{ auth.user.fullName }}
+<div class="py-12">
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="p-6 text-gray-900 dark:text-gray-100">
+                Welcome <span class="font-bold">{{ auth.user.fullName }}!</span>
+            </div>
+        </div>
+    </div>
+</div>
 
-<form method="post" action="{{ route('logout') }}">
-    {{ csrfField() }}
-    <button type="submit" class="border shadow">Sign out</button>
-</form>
 @end

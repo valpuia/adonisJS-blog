@@ -1,9 +1,11 @@
-@layout.guest()
+@layout.guest({ title: 'Login'})
 
 <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100 dark:bg-gray-900">
     <div>
         <a href="/">
-            @!logo()
+            @!logo({
+            class: ['class=w-32 h-32']
+            })
         </a>
     </div>
 

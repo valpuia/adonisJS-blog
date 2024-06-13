@@ -4,14 +4,14 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ title || "Adon Blog" }}</title>
+    <title>{{ title || "Admin" }} - Adon Blog</title>
 
     @vite('resources/js/app.js')
 </head>
 
 <body class="font-sans antialiased">
     <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
-        {{-- include nav --}}
+        @include('pages/admin/navigation')
 
         @if($slots.header)
         <header class="bg-white dark:bg-gray-800 shadow">
