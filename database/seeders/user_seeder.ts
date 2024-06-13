@@ -3,6 +3,6 @@ import { BaseSeeder } from '@adonisjs/lucid/seeders'
 
 export default class extends BaseSeeder {
   async run() {
-    await UserFactory.create()
+    await UserFactory.merge({ email: 'valpuia@mail.com' }).create()
   }
 }
