@@ -9,28 +9,78 @@
 <div class="py-12">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg p-6">
-            <div class="text-gray-900 dark:text-gray-100">
+            <div class="text-gray-900 dark:text-gray-100 font-semibold">
                 Create new blog
             </div>
 
-            <form class="mt-5">
-                <div>
+            <form class="mt-5" method="post" action="{{ route('admin.blogs.store') }}">
+                {{ csrfField() }}
+
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        @!label({
+                        value: 'Title',
+                        class: "after:content-['*'] after:text-red-500"
+                        })
+    
+                        @!input({
+                        type: 'text',
+                        name: 'title',
+                        required: true,
+                        value: old('title'),
+                        autofocus: true,
+                        class: 'mt-1'
+                        })
+    
+                        @inputError('title')
+                        <p class="text-xs text-red-500 mt-1">{{ $messages }}</p>
+                        @end
+                    </div>
+    
+                    <div>
+                        @!label({
+                        value: 'Excerpt',
+                        class: "after:content-['*'] after:text-red-500"
+                        })
+    
+                        @!textarea({
+                        name: 'excerpt',
+                        required: true,
+                        value: old('excerpt'),
+                        class: 'mt-1',
+                        rows: 1
+                        })
+    
+                        @inputError('excerpt')
+                        <p class="text-xs text-red-500 mt-1">{{ $messages }}</p>
+                        @end
+                    </div>
+                </div>
+
+                <div class="mt-4">
                     @!label({
-                    value: 'Title',
+                    value: 'Content',
                     class: "after:content-['*'] after:text-red-500"
                     })
 
-                    @!input({
-                    type: 'text',
-                    name: 'title',
+                    @!textarea({
+                    name: 'content',
                     required: true,
-                    value: old('title'),
-                    autofocus: true,
-                    class: 'mt-1'
+                    value: old('content'),
+                    class: 'mt-1',
+                    rows: 10
                     })
 
-                    @inputError('title')
-                    <p class="text-xs text-red-500 mt-1">{{ $message }}</p>
+                    @inputError('content')
+                        <p class="text-xs text-red-500 mt-1">{{ $messages }}</p>
+                    @end
+                </div>
+
+                <div class="items-center mt-4">
+                    @button({
+                    type: 'submit',
+                    })
+                    Create
                     @end
                 </div>
             </form>
