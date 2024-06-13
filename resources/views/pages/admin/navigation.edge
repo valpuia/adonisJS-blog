@@ -20,7 +20,11 @@
 
                     @navLink({
                     href: route('admin.blogs.index'),
-                    active: (request.matchesRoute('admin.blogs.index') || request.matchesRoute('admin.blogs.create'))
+                    active:(
+                    request.matchesRoute('admin.blogs.index') ||
+                    request.matchesRoute('admin.blogs.create') ||
+                    request.matchesRoute('admin.blogs.edit')
+                    )
                     })
                     Blogs
                     @end
