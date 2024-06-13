@@ -15,9 +15,9 @@
             {{ csrfField() }}
 
             <div>
-                @label()
-                Email
-                @end
+                @!label({
+                value: 'Email'
+                })
 
                 @!input({
                 type: 'email',
@@ -25,6 +25,7 @@
                 required: true,
                 value: old('email'),
                 autofocus: true,
+                class: 'mt-1'
                 })
 
                 @error('E_INVALID_CREDENTIALS')
@@ -33,14 +34,15 @@
             </div>
 
             <div class="mt-4">
-                @label()
-                Password
-                @end
+                @!label({
+                value: 'Password'
+                })
 
                 @!input({
                 type: 'password',
                 name: 'password',
-                required: 'true',
+                required: true,
+                class: 'mt-1'
                 })
             </div>
 
