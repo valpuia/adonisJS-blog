@@ -1,12 +1,19 @@
 import Blog from '#models/blog'
-import { createBlogValidator } from '#validators/blog'
+import { blogValidator } from '#validators/blog'
 import string from '@adonisjs/core/helpers/string'
 import type { HttpContext } from '@adonisjs/core/http'
 
 export default class BlogsController {
 
   async index({ view }: HttpContext) {
-    return view.render('pages/admin/blogs/index')
+    const blogs = await Blog.query()
+      .select(['id', 'title', 'excerpt', 'createdAt', 'userId'])
+      .preload('user', (query) =>  {
+        query.select(['id', 'fullName'])
+      })
+      .orderBy('createdAt', 'desc')
+
+    return view.render('pages/admin/blogs/index', { blogs })
   }
 
   async create({ view }: HttpContext) {
@@ -14,7 +21,7 @@ export default class BlogsController {
   }
 
   async store({ request, auth, response }: HttpContext) {
-    const data = await request.validateUsing(createBlogValidator)
+    const data = await request.validateUsing(blogValidator)
 
     // @todo: provide unique slug
     const blogData = {...data, slug: string.slug(data.title, {lower: true}), userId: auth.user!.id}
@@ -24,15 +31,20 @@ export default class BlogsController {
     return response.redirect().toRoute('admin.blogs.index')
   }
 
-  /**
-   * Edit individual record
-   */
-  async edit({ params }: HttpContext) { }
+  async edit({ params, view }: HttpContext) {
+    const blog = await Blog.findOrFail(params.id)    
 
-  /**
-   * Handle form submission for the edit action
-   */
-  async update({ params, request }: HttpContext) { }
+    return view.render('pages/admin/blogs/edit', { blog })
+  }
+
+  async update({ params, request, response }: HttpContext) {
+    const data = await request.validateUsing(blogValidator)
+
+    const blog = await Blog.findOrFail(params.id)
+    await blog.merge(data).save()
+
+    return response.redirect().toRoute('admin.blogs.index')
+  }
 
   /**
    * Delete record

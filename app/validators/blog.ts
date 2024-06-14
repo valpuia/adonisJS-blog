@@ -1,6 +1,6 @@
 import vine from '@vinejs/vine'
 
-export const createBlogValidator = vine.compile(
+export const blogValidator = vine.compile(
     vine.object({
         title: vine.string().trim().maxLength(255),
         excerpt: vine.string().trim().maxLength(255),
