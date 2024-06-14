@@ -44,17 +44,13 @@
                                 <td class="whitespace-nowrap px-6 py-4 flex justify-end gap-2">
                                     <a href="{{ route('admin.blogs.edit', [blog.id]) }}">
                                         @svg('heroicons:pencil-square', {
-                                            width: 20,
-                                            height: 20,
-                                            color: 'purple'
+                                            class: 'w-5 h-5 text-indigo-500'
                                         })
                                     </a>
 
                                     <button>
                                         @svg('heroicons:trash', {
-                                            width: 20,
-                                            height: 20,
-                                            color: 'red'
+                                            class: 'w-5 h-5 text-red-500'
                                         })
                                     </button>
                                 </td>
