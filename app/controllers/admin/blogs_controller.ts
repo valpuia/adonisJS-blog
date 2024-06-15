@@ -46,9 +46,12 @@ export default class BlogsController {
     return response.redirect().toRoute('admin.blogs.index')
   }
 
-  /**
-   * Delete record
-   */
-  async destroy({ params }: HttpContext) { }
+  async destroy({ params, response }: HttpContext) {
+    const blog = await Blog.findOrFail(params.id)
+
+    await blog.delete()
+
+    return response.redirect().back()
+  }
 
 }

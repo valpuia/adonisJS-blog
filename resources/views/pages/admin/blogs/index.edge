@@ -48,11 +48,18 @@
                                         })
                                     </a>
 
-                                    <button>
-                                        @svg('heroicons:trash', {
-                                            class: 'w-5 h-5 text-red-500'
-                                        })
-                                    </button>
+                                    <form
+                                        onsubmit="return confirm('Are you sure to delete?')"
+                                        method="post"
+                                        action="{{ route('admin.blogs.destroy', [blog.id], { qs: { _method: 'DELETE' } })}}
+                                    ">
+                                        {{ csrfField() }}
+                                        <button type="submit">
+                                            @svg('heroicons:trash', {
+                                                class: 'w-5 h-5 text-red-500'
+                                            })
+                                        </button>
+                                    </form>
                                 </td>
                             </tr>
                             @else
