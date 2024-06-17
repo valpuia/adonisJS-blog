@@ -1,15 +1,27 @@
 <!DOCTYPE html>
-<html>
+<html
+    x-data="{
+        darkMode: localStorage.getItem('darkMode') || localStorage.setItem('darkMode', 'system')
+    }"
+    x-init="$watch('darkMode', val => localStorage.setItem('darkMode', val))"
+    :class="{
+        'dark': darkMode === 'dark' || (darkMode === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches)
+    }"
+>
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ title || "Admin" }} - Adon Blog</title>
 
+    <style>
+        [x-cloak] { display: none !important; }
+    </style>
+
     @vite('resources/js/app.js')
 </head>
 
-<body class="font-sans antialiased">
+<body class="font-sans antialiased" x-cloak>
     <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
         @include('pages/admin/navigation')
 
