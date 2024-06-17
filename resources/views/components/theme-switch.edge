@@ -1,22 +1,22 @@
 <div class="inline-flex items-center justify-around px-4 py-2 w-full">
 
-  <button x-on:click="darkMode = 'light'">
+  <button @click="darkMode = 'light'">
     @svg('heroicons:sun', {
-        class: 'size-8 p-1 text-gray-700 dark:text-gray-100 transition rounded-full dark:border-gray-400 border-gray-100 border'
+        class: 'size-8 p-1 text-gray-700 dark:text-gray-100 transition rounded-full dark:border-gray-600 border-gray-100 border'
     })
     <span class="sr-only">light</span>
   </button>
 
-  <button x-on:click="darkMode = 'dark'">
+  <button @click="darkMode = 'dark'">
     @svg('heroicons:moon', {
-        class: 'size-8 p-1 text-gray-700 dark:text-gray-100 transition rounded-full dark:border-gray-400 border-gray-100 border'
+        class: 'size-8 p-1 text-gray-700 dark:text-gray-100 transition rounded-full dark:border-gray-600 border-gray-100 border'
     })
     <span class="sr-only">dark</span>
   </button>
 
-  <button x-on:click="darkMode = 'system'">
+  <button @click="darkMode = 'system'">
     @svg('heroicons:computer-desktop', {
-        class: "size-8 p-1 text-gray-700 dark:text-gray-100 transition rounded-full dark:border-gray-400 border-gray-100 border"
+        class: "size-8 p-1 text-gray-700 dark:text-gray-100 transition rounded-full dark:border-gray-600 border-gray-100 border"
     })
     <span class="sr-only">system</span>
   </button>
