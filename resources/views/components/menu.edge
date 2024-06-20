@@ -1,0 +1,25 @@
+<ul {{
+        $props
+        .mergeUnless(removeDesktopClass, { class: ['hidden md:flex gap-3'] })
+        .except(['removeDesktopClass'])
+        .toAttrs()
+    }}
+    :class="{ '-translate-x-0' : openMenu, '-translate-x-full' : !openMenu }"
+    >
+
+    <li :class="{ 'border-b border-inherit dark:border-gray-700' : openMenu, '' : !openMenu }">
+        <a
+            :class="{ 'block px-4 py-2' : openMenu, '' : !openMenu }"
+            href="/"
+        >Home</a>
+    </li>
+
+    <li :class="{ 'border-b border-inherit dark:border-gray-700' : openMenu, '' : !openMenu }">
+        @if(await auth.check())
+        <a :class="{ 'block px-4 py-2' : openMenu, '' : !openMenu }" href="{{ route('admin.dashboard') }}">Dashboard</a>
+        @else
+        <a :class="{ 'block px-4 py-2' : openMenu, '' : !openMenu }" href="{{ route('login') }}">Login</a>
+        @end
+    </li>
+
+</ul>

@@ -25,7 +25,11 @@
     @vite('resources/js/app.js')
 </head>
 
-<body class="text-gray-900 antialiased" x-cloak>
+<body class="text-gray-900 dark:text-gray-200 antialiased bg-gray-100 dark:bg-gray-900" x-cloak>
+    @if(header != false)
+        @include('pages/guests/navigation')
+    @end
+
     {{{ await $slots.main() }}}
 </body>
 

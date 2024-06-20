@@ -1,13 +1,7 @@
 @layout.guest()
-<div class="flex justify-end">
-  @if(await auth.check())
-  <a href="{{ route('admin.dashboard') }}" class="underline">Dashboard</a>
-  @else
-  <a href="{{ route('login') }}" class="underline">Login</a>
-  @end
+<div class="max-w-7xl mx-auto px-3 py-10">
+  <h1 class="text-3xl">
+    Welcome to Adon blog!
+  </h1>
 </div>
-
-<h1 class="text-3xl font-bold">
-  Welcome
-</h1>
 @end

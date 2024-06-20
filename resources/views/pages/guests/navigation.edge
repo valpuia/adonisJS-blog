@@ -1,0 +1,35 @@
+<div x-data="{ openMenu: false }">
+    <header class="bg-white dark:bg-gray-800 dark:text-gray-200 shadow">
+        <div class="flex justify-between items-center max-w-7xl mx-auto py-1 px-4 sm:px-6 lg:px-8">
+            <a href="/">
+                @!logo({
+                class: ['size-16 dark:text-white']
+                })
+            </a>
+    
+            <button class="md:hidden" @click="openMenu = !openMenu">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12H12m-8.25 5.25h16.5" />
+                </svg>
+            </button>
+    
+            @!menu()
+        </div>
+    </header>
+
+    <!-- popup menu -->
+    <nav class="fixed top-0 bottom-0 left-0 right-0 backdrop-blur-sm z-10"
+        :class="{ 'visible' : openMenu, 'invisible' : !openMenu }"
+    >
+        @!menu({
+            removeDesktopClass: true,
+            class: ['absolute top-0 bottom-0 left-0 w-5/6 bg-white dark:bg-gray-800 dark:text-white py-4 drop-shadow-2xl z-10 transition-all']
+        })
+
+        <button class="absolute top-0 bottom-0 right-0 left-0 dark:text-white" @click="openMenu = !openMenu">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 absolute top-6 right-3">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+            </svg>
+        </button>
+    </nav>   
+</div>
