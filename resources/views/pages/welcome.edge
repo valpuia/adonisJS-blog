@@ -3,5 +3,13 @@
   <h1 class="text-3xl">
     Welcome to Adon blog!
   </h1>
+
+  <ul>
+    @each(blog in blogs)
+      <li>
+        {{ blog.title }}
+      </li>
+    @end
+  </ul>
 </div>
 @end

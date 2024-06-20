@@ -14,8 +14,9 @@ const DashboardController = () => import('#controllers/admin/dashboard_controlle
 const LoginController = () => import('#controllers/auth/login_controller')
 const LogoutController = () => import('#controllers/auth/logout_controller')
 const BlogsController = () => import('#controllers/admin/blogs_controller')
+const HomeController = () => import('#controllers/home_controller')
 
-router.on('/').render('pages/welcome')
+router.get('/', [HomeController, 'index']).as('home')
 
 router.get('login', [LoginController, 'index']).as('login').use(middleware.guest())
 router.post('login', [LoginController, 'handle']).as('login.handle').use(middleware.guest())
