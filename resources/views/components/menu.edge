@@ -1,10 +1,10 @@
 <ul {{
         $props
-        .mergeUnless(removeDesktopClass, { class: ['hidden md:flex gap-3'] })
+        .mergeUnless(removeDesktopClass, { class: ['hidden md:flex gap-3 items-center'] })
         .except(['removeDesktopClass'])
         .toAttrs()
     }}
-    :class="{ '-translate-x-0' : openMenu, '-translate-x-full' : !openMenu }"
+    :class="{ '-translate-x-0' : openMenu, '-translate-x-full md:translate-x-0' : !openMenu }"
     >
 
     <li :class="{ 'border-b border-inherit dark:border-gray-700' : openMenu, '' : !openMenu }">
@@ -20,6 +20,10 @@
         @else
         <a :class="{ 'block px-4 py-2' : openMenu, '' : !openMenu }" href="{{ route('login') }}">Login</a>
         @end
+    </li>
+
+    <li class="hidden md:block">
+        @!themeSwitch()
     </li>
 
 </ul>
