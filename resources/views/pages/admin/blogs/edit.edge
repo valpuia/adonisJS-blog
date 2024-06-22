@@ -2,7 +2,7 @@
 
 @slot('header')
 <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-    Edit {{ blog.title }}
+    {{ t('messages.edit') + ' ' + blog.title }}
 </h2>
 @endslot
 
@@ -10,7 +10,7 @@
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg p-6">
             <div class="text-gray-900 dark:text-gray-100 font-semibold">
-                Edit blog
+                {{ t('messages.editBlog') }}
             </div>
 
             <form class="mt-5" method="post" action="{{ route('admin.blogs.update', [blog.id], { qs: { _method: 'PUT' } }) }}">
@@ -19,7 +19,7 @@
                 <div class="grid grid-cols-2 gap-4">
                     <div>
                         @!label({
-                        value: 'Title',
+                        value: t('messages.title'),
                         class: "after:content-['*'] after:text-red-500"
                         })
     
@@ -39,7 +39,7 @@
     
                     <div>
                         @!label({
-                        value: 'Excerpt',
+                        value: t('messages.excerpt'),
                         class: "after:content-['*'] after:text-red-500"
                         })
     
@@ -59,7 +59,7 @@
 
                 <div class="mt-4">
                     @!label({
-                    value: 'Content',
+                    value: t('messages.content'),
                     class: "after:content-['*'] after:text-red-500"
                     })
 
@@ -80,7 +80,7 @@
                     @button({
                     type: 'submit',
                     })
-                    Update
+                    {{ t('messages.update') }}
                     @end
                 </div>
             </form>

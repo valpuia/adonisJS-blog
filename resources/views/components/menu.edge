@@ -11,14 +11,14 @@
         <a
             :class="{ 'block px-4 py-2' : openMenu, '' : !openMenu }"
             href="{{ route('home') }}"
-        >Home</a>
+        >{{ t('messages.home') }}</a>
     </li>
 
     <li :class="{ 'border-b border-inherit dark:border-gray-700' : openMenu, '' : !openMenu }">
         @if(await auth.check())
-        <a :class="{ 'block px-4 py-2' : openMenu, '' : !openMenu }" href="{{ route('admin.dashboard') }}">Dashboard</a>
+        <a :class="{ 'block px-4 py-2' : openMenu, '' : !openMenu }" href="{{ route('admin.dashboard') }}">{{ t('messages.dashboard') }}</a>
         @else
-        <a :class="{ 'block px-4 py-2' : openMenu, '' : !openMenu }" href="{{ route('login') }}">Login</a>
+        <a :class="{ 'block px-4 py-2' : openMenu, '' : !openMenu }" href="{{ route('login') }}">{{ t('messages.login') }}</a>
         @end
     </li>
 

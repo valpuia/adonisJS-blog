@@ -16,7 +16,7 @@
 
             <div>
                 @!label({
-                value: 'Email'
+                value: t('messages.email')
                 })
 
                 @!input({
@@ -35,7 +35,7 @@
 
             <div class="mt-4">
                 @!label({
-                value: 'Password'
+                value: t('messages.password')
                 })
 
                 @!input({
@@ -51,7 +51,7 @@
                     <input id="remember" type="checkbox"
                         class="rounded dark:bg-gray-900 border-gray-300 dark:border-gray-700 text-indigo-600 shadow-sm focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:focus:ring-offset-gray-800"
                         name="rememberMe">
-                    <span class="ms-2 text-sm text-gray-600 dark:text-gray-400">Remember me</span>
+                    <span class="ms-2 text-sm text-gray-600 dark:text-gray-400">{{ t('messages.rememberMe') }}</span>
                 </label>
             </div>
 
@@ -59,7 +59,7 @@
                 @button({
                 type: 'submit',
                 })
-                Login
+                {{ t('messages.login') }}
                 @end
             </div>
         </form>
